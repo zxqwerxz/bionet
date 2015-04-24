@@ -3,7 +3,10 @@ Biological Networks Project
 
 Links
 -----
-*[comprehensive list of samples](http://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP027537)
+
+* [new paper](http://www.nature.com/nature/journal/v510/n7505/full/nature13437.html)
+* [dataset](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE48968)
+* [comprehensive list of samples](http://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP027537)
 
 Downloading Data
 ----------------
@@ -26,4 +29,5 @@ We decided to choose only the LPS timecourse dataset and controls. We will not b
 analyzing the knockouts or the other treatment conditions (at least for now).
 
 The list of the samples we chose to download are as follows:
+
     info/explist1.csv
