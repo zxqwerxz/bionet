@@ -99,7 +99,7 @@ Download:
 	ended up doing in the end was going to UCSC's table generator and
 	grabbing the mRNA fasta sequences from the known gene generator.
 	* Configuration can be seen on the following image:
-	* (image)
+	* ![KnownGenesConfig](https://github.com/zxqwerxz/bionet/blob/master/info/knownGenesConfig.png)
 
 Don't Need:
 * [UCSC mm9 anotations files - KnownGene.txt](http://hgdownload.cse.ucsc.edu/goldenPath/mm9/database/)
