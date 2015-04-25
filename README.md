@@ -88,9 +88,9 @@ Aligning Data
 ### Step 1: Getting the files necessary ###
 
 Install:
-* Bowtie
-* rsem
-* tophat (optional)
+* Bowtie (+add to path)
+* rsem (+make +add to path)
+* tophat (so far not needed)
 
 Download:
 
@@ -100,6 +100,9 @@ Download:
 	grabbing the mRNA fasta sequences from the known gene generator.
 	* Configuration can be seen on the following image:
 	* (image)
+
+Don't Need:
+* [UCSC mm9 anotations files - KnownGene.txt](http://hgdownload.cse.ucsc.edu/goldenPath/mm9/database/)
 
 Metrics of KnownGene generation:
 
@@ -131,7 +134,25 @@ Metrics of KnownGene generation:
 | filter           | off           |
 | intersection     | off           |
 
-Don't Need:
-* [UCSC mm9 anotations files - KnownGene.txt](http://hgdownload.cse.ucsc.edu/goldenPath/mm9/database/)
 
+### Step 2: Build Index ###
 
+Using "knownGenes.fa" (downloaded from UCSC table generator)
+
+Run:
+
+    bowtie-build knownGenes.fa knownGenesMM9
+
+It finishes in 10 minutes or so, since the fasta file is only about
+50 MB or so.
+
+### Step 3: Align data ###
+
+Testing metrics onto bowtie align:
+
+    time bowtie -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 align/knownGeneMM9/knownGeneMM9 SRR936367.fastq SRR936367.sam
+
+(Still running as of now)
+
+I should be able to pipe the data out into a BAM format though, so I'm
+installing samtools right now.
