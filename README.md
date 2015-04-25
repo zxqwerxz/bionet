@@ -103,7 +103,7 @@ Download:
 
 Metrics of KnownGene generation:
 
-| Known Genes Summary Statistics         ||
+*Known Genes Summary Statistics*
 | item count     | 31,863                 |
 |----------------|------------------------|
 | item bases     | 842,101,417 (32.80%)   |
@@ -118,7 +118,7 @@ Metrics of KnownGene generation:
 | average block  | 264                    |
 | biggest block  | 17,497                 |
 
-| Region and Timing Statistics    ||
+*Region and Timing Statistics*
 | region           | genome        |
 |------------------|---------------|
 | bases in region  | 2,664,455,088 |
