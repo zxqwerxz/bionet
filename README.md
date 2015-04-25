@@ -180,15 +180,19 @@ tomorrow.
 
 ***Try running on shared windows folder and linux only vbox harddrive***
 
-Linux Vbox expanding harddrive - 5GB RAM, 2 cores assigned, Intel i7 2 cores (4 hyperthreaded)
+Linux Vbox expanding harddrive - 5GB RAM, 2 cores assigned, Intel i7 2 cores (4 hyperthreaded) (producing SAM)
 
     real 31m51.161s
     user 30m19.711s
     sys 2m16.106s
 
-Linux (Vbox)/Windows Shared Folder - 5GB RAM, 2 cores assigned, Intel i7 2 cores (4 hyperthreaded)
+Linux (Vbox)/Windows Shared Folder - 5GB RAM, 2 cores assigned, Intel i7 2 cores (4 hyperthreaded) (producing SAM)
 
-Mac OsX - 8GB RAM, Intel i7 2 cores
+    real 31m43.432s
+    user 30m23.852s
+    sys 2m48.120
+    
+Mac OsX - 8GB RAM, Intel i7 2 cores (producing SAM)
 
     real 23m46.696s
     user 23m55.481s
@@ -213,3 +217,9 @@ Mac OsX - 8GB RAM, Intel i7 2 cores
     # Try 2 threads
     time bowtie -p 2 -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 offset5/knownGeneMM9 SRR936367.fastq | samtools view -bS - > SRR936367.bam
 
+*** Results: ***
+    
+    # OSX o5p2
+    real	15m51.925s
+    user	35m41.549s
+    sys	0m42.032s
