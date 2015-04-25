@@ -11,11 +11,11 @@ import os, sys, subprocess
 def main(argv):
 
     # Arguments
-    files = "explist1.txt"
+    files = "../info/explist1.txt"
     ext = ".sra"
     ftp_root = "anonftp@ftp.ncbi.nlm.nih.gov:/sra/sra-instant/reads/ByStudy/sra/SRP/SRP027/SRP027537/"
     ascp_key = "'/Users/jeffrey/Applications/Aspera Connect.app/Contents/Resources/asperaweb_id_dsa.putty'"
-    dest_path = "data/"
+    dest_path = "../data/"
 
     # Load list of files
     f = open(files, 'rb')

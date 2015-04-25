@@ -31,3 +31,107 @@ analyzing the knockouts or the other treatment conditions (at least for now).
 The list of the samples we chose to download are as follows:
 
     info/explist1.csv
+
+Which in a text file form of only the SRR files is:
+
+    info/explist.txt
+
+### Step 3: Downloading Data ###
+
+Downloading was done on a mac.
+
+Edit the get_data.py script and change the arguments so that it directs
+to the correct file list.
+
+    python scripts/get_data.py
+
+Commentary on this:
+
+It took around 10-35 seconds to download each file, which I calculated
+to take anywhere between 8-10 hours. However, realistically it took
+closer to 16-ish hours because I later discovered that when a Mac goes
+to sleep, the internet connection disconnects.
+
+As a note, one should go to preferences to ensure that the computer
+doesn't sleep or at least disconnect during the process of downloading
+files.
+
+### Step 4: Coverting SRR files into fastq ###
+
+Install:
+* sratoolkit
+
+I am running this section on my linux vbox under windows, 5G RAM, 2 cores.
+
+I did some quick checks on the metrics, and it looks like it'll take
+around 35 seconds per conversion, which is about 2 days on the entire
+2000 run set. Obviously just this set will entail cutting down on the
+number of samples.
+
+It seems to run in about 20 seconds if I don't run it on the shared
+harddrive partition, and instead of the linux localdisk.
+
+Another issue is that each fastq file is about 2GB, which on our entire
+dataset is 4TB, which is way beyond our physical space limitations.
+Assuming I have 500GB, I can really only do 250 runs.
+
+In either case, the conversion at this step is very simple. It requires
+downloading: sratoolkit, which I've added to path.
+
+    fastqdump <name of SRR file>
+
+I can write a simple bash script to do this once I choose my files.
+
+Aligning Data
+-------------
+
+### Step 1: Getting the files necessary ###
+
+Install:
+* Bowtie
+* rsem
+* tophat (optional)
+
+Download:
+
+* [UCSC KnowGenes transcriptome](http://genome.ucsc.edu/cgi-bin/hgTables)
+    * Since it wasn't actually that clear how to obtain this data, what I
+	ended up doing in the end was going to UCSC's table generator and
+	grabbing the mRNA fasta sequences from the known gene generator.
+	* Configuration can be seen on the following image:
+	* (image)
+
+Metrics of KnownGene generation:
+
+| Known Genes Summary Statistics          |
+|-----------------------------------------|
+| item count     | 31,863                 |
+|----------------|------------------------|
+| item bases     | 842,101,417 (32.80%)   |
+| item total     | 1,559,241,077 (60.74%) |
+| smallest item  | 217                    |
+| average item   | 48,936                 |
+| biggest item   | 2,311,117              |
+| block count    | 314,628                |
+| block bases    | 54,684,224 (2.13%)     |
+| block total    | 83,159,087 (3.24%)     |
+| smallest block | 4                      |
+| average block  | 264                    |
+| biggest block  | 17,497                 |
+
+| Region and Timing Statistics     |
+|----------------------------------|
+| region           | genome        |
+|------------------|---------------|
+| bases in region  | 2,664,455,088 |
+| bases in gaps    | 97,171,117    |
+| load time        | 0.15          |
+| calculation time | 0.84          |
+| free memory time | 0.00          |
+| filter           | off           |
+| intersection     | off           |
+
+Don't Need:
+* [UCSC mm9 anotations files - KnownGene.txt](http://hgdownload.cse.ucsc.edu/goldenPath/mm9/database/)
+
+
