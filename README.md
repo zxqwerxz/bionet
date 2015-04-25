@@ -197,5 +197,6 @@ Shared Folder
 
 ***Try using different number of threads:***
 
-    time bowtie -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 align/knownGeneMM9/knownGeneMM9 SRR936367.fastq SRR936367.sam
+    # Default is 1 thread
+    time bowtie -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 align/knownGeneMM9/knownGeneMM9 SRR936367.fastq | samtools view -uS - > SRR936367.bam
 
