@@ -152,7 +152,24 @@ Testing metrics onto bowtie align:
 
     time bowtie -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 align/knownGeneMM9/knownGeneMM9 SRR936367.fastq SRR936367.sam
 
-(Still running as of now)
+stderr ouput:
+
+    # reads processed: 3604331
+	# reads with at least one reported alignment: 2116226 (58.71%)
+	# reads that failed to align: 1442073 (40.01%)
+	# reads with alignments suppressed due to -m: 46032 (1.28%)
+	Reported 7202365 alignments to 1 output stream(s)
+
+    real 39m14.116s
+    user 37m35.789s
+    sys 0m27.822s
+
+Output samfile is 5.5 GB
+Input fastq was 1.9 GB
+Input sra was 483 MB
 
 I should be able to pipe the data out into a BAM format though, so I'm
 installing samtools right now.
+
+I should also be able to parallelize the alignment as well. Will check
+tomorrow.
