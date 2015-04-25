@@ -304,5 +304,17 @@ Prepare rsem reference from fasta:
 Run rsem:
 
      time rsem-calculate-expression --bam o3p1.bam knownGeneMM9 sample1
-
+     
+     Bam output file is generated!
+     Time Used for EM.cpp : 0 h 26 m 44 s
+     
+     samtools sort -@ 1 -m 1G sample1.transcript.bam sample1.transcript.sorted
+     [bam_sort_core] merging from 10 files...
+     
+     samtools index sample1.transcript.sorted.bam
+     rm -rf sample1.temp
+     
+     real 37m54.496s
+     user 35m4.118s
+     sys 0m57.585s
 
