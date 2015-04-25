@@ -218,9 +218,9 @@ Mac OsX - 8GB RAM, Intel i7 2 cores (producing SAM)
     time bowtie -p 2 -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 offset5/knownGeneMM9 SRR936367.fastq | samtools view -bS - > SRR936367.bam
 
 *** Results: ***
-    
+Platform MAC OSX:
+
     # OSX o5p1
-    
     
     # OSX o5p2
     real	15m51.925s
@@ -246,7 +246,9 @@ Mac OsX - 8GB RAM, Intel i7 2 cores (producing SAM)
     real	14m20.069s
     user	33m7.839s
     sys	0m34.379s
-    
+
+Platform LinuxShare:
+
     # LinuxShare o5p1
     real	31m46.544s
     user	33m46.215s
