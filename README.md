@@ -214,7 +214,7 @@ Mac OsX - 8GB RAM, Intel i7 2 cores (producing SAM)
     # Try 2 threads
     time bowtie -p 2 -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 offset5/knownGeneMM9 SRR936367.fastq | samtools view -bS - > SRR936367.bam
 
-*** Results: ***
+***Results:***
 
 Platform MAC OSX:
 
@@ -260,6 +260,11 @@ Platform LinuxShare:
     user 33m46.215s
     sys 5m1.328s
     
+    # LinuxShare o5p3
+    real 21m40.686s
+    user 34m1.436s
+    sys 7m44.267s
+    
     # LinuxShare o4p1
     real 30m33.725s
     user 32m58.089s
@@ -274,4 +279,30 @@ Platform LinuxShare:
     real 19m32.390s
     user 32m31.524s
     sys 5m4.226s
+
+###Step 4: Calculate Expression###
+
+Install:
+* rsem
+
+Prepare rsem reference from fasta:
+
+     rsem-prepare-reference knownGeneMM9.fa knownGeneMM9
+     
+     # Stderr output (very fast)
+     rsem-synthesis-reference-transcripts knownGeneMM9 0 0 knownGeneMM9.fa
+     Transcript Information File is generated!
+     Group File is generated!
+     Extracted Sequences File is generated!
+     
+     rsem-preref knownGeneMM9.transcripts.fa 1 knownGeneMM9 -l 125
+     Refs.makeRefs finished!
+     Refs.saveRefs finished!
+     knownGeneMM9.idx.fa is generated!
+     knownGeneMM9.n2g.idx.fa is generated!
+
+Run rsem:
+
+     time rsem-calculate-expression --bam o3p1.bam knownGeneMM9 sample1
+
 
