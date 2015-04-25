@@ -219,7 +219,47 @@ Mac OsX - 8GB RAM, Intel i7 2 cores (producing SAM)
 
 *** Results: ***
     
+    # OSX o5p1
+    
+    
     # OSX o5p2
     real	15m51.925s
     user	35m41.549s
     sys	0m42.032s
+    
+    # OSX o4p1
+    real	22m38.203s
+    user	26m33.345s
+    sys	0m11.606s
+    
+    # OSX o4p2
+    real	14m42.690s
+    user	33m41.568s
+    sys	0m37.798s
+    
+    # OSX o3p1
+    real	22m39.847s
+    user	26m37.195s
+    sys	0m13.957s
+    
+    # OSX o3p2
+    real	14m20.069s
+    user	33m7.839s
+    sys	0m34.379s
+    
+    # LinuxShare o5p1
+    real	31m46.544s
+    user	33m46.215s
+    sys	5m1.328s
+    
+    # LinuxShare o5p2
+    real	19m42.821s
+    user	33m46.215s
+    sys	5m1.328s
+    
+    # LinuxShare o4p1
+    real	30m33.725s
+    user	32m58.089s
+    sys	1m54.355s
+    
+
