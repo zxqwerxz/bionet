@@ -108,28 +108,28 @@ Metrics of KnownGene generation:
 
 *Known Genes Summary Statistics*
 
-| item count     | 31,863                 |
+| item count     | 55,419                 |
 |----------------|------------------------|
-| item bases     | 842,101,417 (32.80%)   |
-| item total     | 1,559,241,077 (60.74%) |
-| smallest item  | 217                    |
-| average item   | 48,936                 |
-| biggest item   | 2,311,117              |
-| block count    | 314,628                |
-| block bases    | 54,684,224 (2.13%)     |
-| block total    | 83,159,087 (3.24%)     |
-| smallest block | 4                      |
-| average block  | 264                    |
-| biggest block  | 17,497                 |
+| item bases     | 1,062,301,525 (40.54%) |
+| item total     | 2,512,869,813 (95.90%) |
+| smallest item  | 22                     |
+| average item   | 45,343                 |
+| biggest item   | 3,171,331              |
+| block count    | 476,712                |
+| block bases    | 75,683,175 (2.89%)     |
+| block total    | 140,366,062 (5.36%)    |
+| smallest block | 1                      |
+| average block  | 294                    |
+| biggest block  | 83,437                 |
 
 *Region and Timing Statistics*
 
 | region           | genome        |
 |------------------|---------------|
-| bases in region  | 2,664,455,088 |
-| bases in gaps    | 97,171,117    |
-| load time        | 0.15          |
-| calculation time | 0.84          |
+| bases in region  | 2,725,765,481 |
+| bases in gaps    | 105,419,354   |
+| load time        | 0.27          |
+| calculation time | 1.14          |
 | free memory time | 0.00          |
 | filter           | off           |
 | intersection     | off           |
@@ -146,7 +146,9 @@ Run:
 It finishes in 10 minutes or so, since the fasta file is only about
 50 MB or so.
 
-### Step 3: Align data ###
+### Step 3: Align data (Attempt 1) ###
+
+Note: I accidentally aligned MM8 transcriptome for this first trial, which is significantly smaller.
 
 Testing metrics onto bowtie align:
 
@@ -173,3 +175,27 @@ installing samtools right now.
 
 I should also be able to parallelize the alignment as well. Will check
 tomorrow.
+
+### Step 3: Align Data (Attempt 2) ###
+
+***Try running on shared windows folder and linux only vbox harddrive***
+
+Linux automatically expanding harddrive
+
+Shared Folder
+
+***Try building different size indexes:***
+
+    # Default: offrate is 5
+    bowtie-build knowGeneMM9.fa knownGeneMM9
+    
+    # Doubles the memory taken
+    bowtie-build -o 4 knownGeneMM9.fa knownGeneMM9
+       
+    # Quadruples the memory taken
+    bowtie-build -o 3 knownGeneMM9.fa knownGeneMM9
+
+***Try using different number of threads:***
+
+    time bowtie -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 align/knownGeneMM9/knownGeneMM9 SRR936367.fastq SRR936367.sam
+
