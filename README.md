@@ -186,6 +186,10 @@ Linux (Vbox)/Windows Shared Folder - 5GB RAM, 2 cores assigned, Intel i7 2 cores
 
 Mac OsX - 8GB RAM, Intel i7 2 cores
 
+    real 23m46.696s
+    user 23m55.481s
+    sys 0m16.523s
+
 ***Try building different size indexes:***
 
     # Default: offrate is 5
