@@ -170,11 +170,8 @@ Output samfile is 5.5 GB
 Input fastq was 1.9 GB
 Input sra was 483 MB
 
-I should be able to pipe the data out into a BAM format though, so I'm
-installing samtools right now.
-
-I should also be able to parallelize the alignment as well. Will check
-tomorrow.
+When I automatically compress the output:
+Output bamfile is 1.8 GB
 
 ### Step 3: Align Data (Attempt 2) ###
 
@@ -218,50 +215,63 @@ Mac OsX - 8GB RAM, Intel i7 2 cores (producing SAM)
     time bowtie -p 2 -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 offset5/knownGeneMM9 SRR936367.fastq | samtools view -bS - > SRR936367.bam
 
 *** Results: ***
+
 Platform MAC OSX:
 
     # OSX o5p1
-    
+    real 24m27.430s
+    user 28m18.436s
+    sys 0m14.307s
+        
     # OSX o5p2
-    real	15m51.925s
-    user	35m41.549s
-    sys	0m42.032s
+    real 15m51.925s
+    user 35m41.549s
+    sys 0m42.032s
     
     # OSX o4p1
-    real	22m38.203s
-    user	26m33.345s
-    sys	0m11.606s
+    real 22m38.203s
+    user 26m33.345s
+    sys 0m11.606s
     
     # OSX o4p2
-    real	14m42.690s
-    user	33m41.568s
-    sys	0m37.798s
+    real 14m42.690s
+    user 33m41.568s
+    sys 0m37.798s
     
     # OSX o3p1
-    real	22m39.847s
-    user	26m37.195s
-    sys	0m13.957s
+    real 22m39.847s
+    user 26m37.195s
+    sys 0m13.957s
     
     # OSX o3p2
-    real	14m20.069s
-    user	33m7.839s
-    sys	0m34.379s
+    real 14m20.069s
+    user 33m7.839s
+    sys 0m34.379s
 
 Platform LinuxShare:
 
     # LinuxShare o5p1
-    real	31m46.544s
-    user	33m46.215s
-    sys	5m1.328s
+    real 31m46.544s
+    user 33m46.215s
+    sys 5m1.328s
     
     # LinuxShare o5p2
-    real	19m42.821s
-    user	33m46.215s
-    sys	5m1.328s
+    real 19m42.821s
+    user 33m46.215s
+    sys 5m1.328s
     
     # LinuxShare o4p1
-    real	30m33.725s
-    user	32m58.089s
-    sys	1m54.355s
+    real 30m33.725s
+    user 32m58.089s
+    sys 1m54.355s
     
+    # LinuxShare o4p2
+    real 19m57.150s
+    user 32m54.494s
+    sys 4m56.999s
+    
+    # LinuxShare o3p2
+    real 19m32.390s
+    user 32m31.524s
+    sys 5m4.226s
 
