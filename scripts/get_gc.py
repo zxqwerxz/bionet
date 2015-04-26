@@ -13,11 +13,12 @@ from Bio import SeqIO
 from Bio.SeqUtils import GC
 from Bio.Seq import Seq
 
-def main():
+def main(argv):
 
     # Parse Args
     if len(sys.argv) != 3:
         sys.stderr.write("Usage: python " + sys.argv[0] + " <UCSC fasta file> <UCSC geneSymbol-geneID mapping>\n")
+        sys.exit(2)
     fasta = sys.argv[1]
     names = sys.argv[2]
 
