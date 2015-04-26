@@ -34,15 +34,17 @@ with open(names) as csvfile:
      r = csv.reader(csvfile, delimiter="\t")
      headers = r.next()
      for row in r:
-         geneName[row[0]] = row[1]
+         geneName[row[0]] = row[1].upper()
 
 # Read sample names into memory
-samplelist = {}
+samplelist = []
 with open(matrix) as csvfile:
     r = csv.reader(csvfile, delimiter="\t")
     headers = r.next()
     for row in r:
-        samplelist[row[0]] = 1
+        samplelist.append(row[0].upper())
+
+print samplelist
 
 # Read fasta
 try:
