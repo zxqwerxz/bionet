@@ -41,6 +41,16 @@ RSEM: UCSC KnownGene(GTF) + KnownIsoforms (txt)
 
 Bash Script:
 
+    #!/usr/bin/bash
+    
+   # Using Rsem Workflow and alignment
+   # Prepare Reference
+   time rsem-prepare-reference --gtf knownGeneMM9.gtf --transcript-to-gene-map knownIsoforms.txt --bowtie mm9.fa mm9
+   
+   # Calculate Expression (w/Bowtie)
+   # It looks like the rsem defaults match with their bowtie options
+   time rsem-calculate-expression --paired-end --num-threads 2 SRR936367_1.fastq SRR936367_2.fastq mm9 SRR936367_rsem
+
 RSEM build stderr: (Not tracked)
 
 RSEM expression Stderr:
@@ -68,6 +78,10 @@ Bowtie: UCSC KnownGene mRNA fasta MM9 (Attempt 2)
 -------------------------------------------------
 
 Bash Script:
+    
+    # Calculate Expression (w/Bowtie)
+    # It looks like the rsem defaults match with their bowtie options
+    time rsem-calculate-expression --paired-end --num-threads 2 --bam SRR936367.bam knownGeneMM9 SRR936367 1>/dev/null
 
 RSEM Align:
 
@@ -82,8 +96,26 @@ Bowtie: UCSC Transcriptome fasta MM9 (Attempt 2)
 
 Bash Script:
 
+    #!/usr/bin/bash
+    
+    # Bowtie index is already prepared
+    time bowtie-build transcriptomeMM9.fa transcriptomeMM9 &> log.txt
+    
+    # Run bowtie o3p2 is fastest
+    time bowtie -p 2 -q --phred33-quals -S -n 2 -e 99999999 -l 25 -I 1 -X 1000 -a -m 200 transcriptomeMM9 -1 SRR936367_1.fastq -2 SRR936367_2.fastq | samtools view -bS - > SRR936367.bam
+    
+    # Prepare rsem reference
+    time rsem-prepare-reference transcriptomeMM9.fa transcriptomeMM9 &>> log.txt
+    
+    # Calculate Expression (w/Bowtie)
+    # It looks like the rsem defaults match with their bowtie options
+    time rsem-calculate-expression --paired-end --num-threads 2 --bam SRR936367.bam transcriptomeMM9 SRR936367 1>/dev/null
+
 Bowtie build stderr:
+
+    Ran out of memory
 
 Bowtie align stderr:
 
-RSEM build stderr: Interrupt (Fail)
+    Could not locate a Bowtie index corresponding to basename "transcriptomeMM9"
+
