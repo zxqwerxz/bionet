@@ -69,7 +69,12 @@ Bowtie: UCSC KnownGene mRNA fasta MM9 (Attempt 2)
 
 Bash Script:
 
+RSEM Align:
 
+    [bam_sort_core] merging from 6 files...
+    real 43m16.445s
+    user 28m52.561s
+    sys 12m55.645s
 
 
 Bowtie: UCSC Transcriptome fasta MM9 (Attempt 2)
