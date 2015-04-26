@@ -279,6 +279,17 @@ Platform LinuxShare:
     real 19m32.390s
     user 32m31.524s
     sys 5m4.226s
+    
+    # LinuxShare o2p2
+    real 20m6.046s
+    user 32m21.010s
+    sys 5m17.288s
+    
+    # LinuxShare o1p2
+    real 21m2.888s
+    user 33m19.198s
+    sys 5m21.436s
+
 
 ###Step 4: Calculate Expression###
 
@@ -318,3 +329,4 @@ Run rsem:
      user 35m4.118s
      sys 0m57.585s
 
+The problem is, the output files don't seem to match precisely.
