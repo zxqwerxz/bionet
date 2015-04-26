@@ -32,5 +32,7 @@ with open(file2) as csvfile:
         list2.append(row[col2].upper())
 
 #Print Differences
+print "List1 duplicates:\t" + str(len(list1) - len(set(list1)))
+print "List2 duplicates:\t" + str(len(list2) - len(set(list2)))
 print "List1 - List2:\t" + str(len(list(set(list1)-set(list2))))
 print "List2 - List1:\t" + str(len(list(set(list2)-set(list1))))
