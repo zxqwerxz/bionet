@@ -44,8 +44,6 @@ with open(matrix) as csvfile:
     for row in r:
         samplelist.append(row[0].upper())
 
-print samplelist
-
 # Read fasta
 try:
     handle = open(fasta, "rU")
