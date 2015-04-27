@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
 import sys, csv
-import matplotlib, pylab
+import matplotlib.pyplot as plt
+import numpy as np
+import random
 
 # Parse Args
 if len(sys.argv) != 3:
@@ -10,20 +12,35 @@ if len(sys.argv) != 3:
 matrix = sys.argv[1]
 gc = sys.argv[2]
 
-# Read canonical list into memory
-# If the gene is seen twice, set it to false
+# Read gc values into memory
 gcdict = {}
 with open(gc) as csvfile:
     r = csv.reader(csvfile, delimiter="\t")
     headers = r.next()
     for row in r:
         gene = row[1].upper()
-        gc_content = int(row[2])
+        gc_content = float(row[2])/100
         gcdict[gene] = gc_content
+
+# Begin reading large matrix
 x = []
 y = []
 with open(matrix) as csvfile:
-    r = csv.reader(csvfile, delimter="\t")
+    r = csv.reader(csvfile, delimiter="\t")
     headers = r.next()
     for row in r:
-        
+        gene = row[0].upper()
+        x.append(gcdict[gene])
+        c = 0
+        for i in range(1, len(row)):
+            c += np.log(float(row[i]) + 1)
+        y.append(np.divide(c,len(row)-1))
+
+# Make Figure
+fig = plt.figure(figsize=(8,6))
+ax = fig.add_subplot(1,1,1)
+ax.scatter(x,y, s=3, marker='.', c='000', alpha=0.3)
+ax.set_title("GC Content vs. TPM")
+ax.set_xlabel("GC Content")
+ax.set_ylabel("Average ln(TPM+1) by Gene")
+fig.savefig("gc_tpm.png")
