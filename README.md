@@ -42,8 +42,17 @@ mapped. I needed a mapping program, so I wrote one. Here is a test of it working
     List2 - List1:	474
     
 As you can tell, the mapping isn't perfect. At this point, I figured I might as well just
-calculate the median (length) gene?
+calculate the median (length) gene? Here's the new program:
 
+    python pileGCContent.py ../data/allSamplesGCContent.tsv ../../knownGeneMM9can.tsv > ../data/allGenesGCcontent.tsv
+
+    python compare2lists.py ../../GSE48968_allgenesTPM_GSM1189042_GSM1190902.txt 0 ../data/allGenesGCcontent.tsv 1
+    List1 duplicates:	0
+    List2 duplicates:	0
+    List1 - List2:	0
+    List2 - List1:	0
+
+This list is good!
 
 
 Experiments
