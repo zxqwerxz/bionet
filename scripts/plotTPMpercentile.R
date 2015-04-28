@@ -50,7 +50,7 @@ if (FALSE) {
 ###################################################################################
 # This section filters out genes that are lowly expressed in <1% of all samples
 # (Genes with expression ln(TPM+1)>1 in less than 1% of all samples)
-if (FALSE) {
+if (TRUE) {
 
 	if (!exists("ltpmf_df")) {
 		ltpmf_df <- as.data.frame(ltpmf)
@@ -63,6 +63,8 @@ if (FALSE) {
 	ltpmf = as.matrix(ltpmf_df)
 
 	plot_percentiles(ltpmf,"LTPM_density_percentile_gt_1.png","Density of Genes with ln(TPM+1)>1")
+	
+	write.table(ltpmf, "ltpmfg1.tsv", sep="\t", quote=F)
 
 }
 
@@ -82,5 +84,7 @@ if (TRUE) {
 	ltpmf = as.matrix(ltpmf_df)
 
 	plot_percentiles(ltpmf,"LTPM_density_percentile_gt_2.png","Density of Genes with ln(TPM+1)>2",2)
+
+	write.table(ltpmf, "ltpmfg2.tsv", sep="\t", quote=F)
 
 }
