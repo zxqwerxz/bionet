@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 import sys, csv
-import matplotlib.pyplot as plt
-import numpy as np
+#import matplotlib.pyplot as plt
+#import numpy as np
 import random
 
 # Parse Args
@@ -30,12 +30,14 @@ with open(matrix) as csvfile:
     headers = r.next()
     for row in r:
         gene = row[0].upper()
-        x.append(gcdict[gene])
+        #x.append(gcdict[gene])
         c = 0
         for i in range(1, len(row)):
-            c += np.log(float(row[i]) + 1)
-        y.append(np.divide(c,len(row)-1))
+            print str(gcdict[gene]) + "\t" + str(row[i])
+            #c += np.log(float(row[i]) + 1)
+        #y.append(np.divide(c,len(row)-1))
 
+"""
 # Make Figure
 fig = plt.figure(figsize=(8,6))
 ax = fig.add_subplot(1,1,1)
@@ -44,3 +46,4 @@ ax.set_title("GC Content vs. TPM")
 ax.set_xlabel("GC Content")
 ax.set_ylabel("Average ln(TPM+1) by Gene")
 fig.savefig("gc_tpm.png")
+"""
