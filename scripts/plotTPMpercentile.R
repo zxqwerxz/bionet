@@ -50,7 +50,7 @@ if (FALSE) {
 ###################################################################################
 # This section filters out genes that are lowly expressed in <1% of all samples
 # (Genes with expression ln(TPM+1)>1 in less than 1% of all samples)
-if (TRUE) {
+if (FALSE) {
 
 	if (!exists("ltpmf_df")) {
 		ltpmf_df <- as.data.frame(ltpmf)
@@ -71,7 +71,7 @@ if (TRUE) {
 ###################################################################################
 # This section filters out genes that are lowly expressed in <1% of all samples
 # (Genes with expression ln(TPM+1)>2 in less than 1% of all samples)
-if (TRUE) {
+if (FALSE) {
 
 	if (!exists("ltpmf_df")) {
 		ltpmf_df <- as.data.frame(ltpmf)
@@ -86,5 +86,28 @@ if (TRUE) {
 	plot_percentiles(ltpmf,"LTPM_density_percentile_gt_2.png","Density of Genes with ln(TPM+1)>2",2)
 
 	write.table(ltpmf, "ltpmfg2.tsv", sep="\t", quote=F)
+
+}
+
+###################################################################################
+# This section filters out genes that are lowly expressed in <1% of all samples
+# Brute force method
+if (TRUE) {
+
+	num <- ncol(ltpmf)
+	tbl <- ltpmf > 1 
+	tbl <- as.data.frame(tbl)
+	tbl$p99 <- apply(tbl, 1, sum)
+	tbl$p99 <- tbl$p99 / num
+	ltpmf_df <- ltpmf_df[tbl$p99 > 0.01,]
+	ltpmf = as.matrix(ltpmf_df)
+
+}
+
+###################################################################################
+# This section filters out genes that are lowly expressed in <1% of all samples
+# (Genes with expression ln(TPM+1)>1 in less than 1% of all samples)
+# And then it procedes to plot is as a scatterplot
+if (FALSE) {
 
 }
